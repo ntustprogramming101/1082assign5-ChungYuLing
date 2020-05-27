@@ -26,8 +26,6 @@ float soldierSpeed = 2f;
 final int GAME_INIT_TIMER = 7200;
 int gameTimer = GAME_INIT_TIMER;
 
-color timeColor;
-
 final float CLOCK_BONUS_SECONDS = 15f;
 
 float playerX, playerY;
@@ -572,7 +570,7 @@ void drawTimerUI(){
 	text(timeString, 3, height + 3);
 
 	// Actual Time Text
-	color timeTextColor = getTimeTextColor(timeColor); 		// Requirement #5: Get the correct color using color getTimeTextColor(int frames)
+	color timeTextColor = #ffffff; 		// Requirement #5: Get the correct color using color getTimeTextColor(int frames)
 	fill(timeTextColor);
 	text(timeString, 0, height);
 }
@@ -593,8 +591,8 @@ String convertFramesToTimeString(int frames){	// Requirement #4
   if (sec<=0){
   min-=1;
 }
-  int min=floor(gameTimer/60/60);
-  int sec=floor((gameTimer/60)%60);
+  int min=gameTimer/60/60;
+  int sec=(gameTimer/60)%60;
   
   String smin = nf (min,2);
   String ssec = nf (sec,2);
@@ -605,23 +603,13 @@ String convertFramesToTimeString(int frames){	// Requirement #4
 
 color getTimeTextColor(int frames){				// Requirement #5
   if (min>=2){
-    timeColor = #00ffff; 
-  }
-  if (min < 2 && min >= 1){
-    timeColor = #ffffff; 
-  }   
-  if (min < 1 && sec >= 30){
-    timeColor = #ffcc00;    
-  }
-  if (min < 1 && sec< 30 && sec >= 10){
-    timeColor = #ff6600;    
-  }
-  if (min < 1 && sec < 10){
-  timeColor = #ff0000; 
+    color timeTextColor=#00ffff;    
   }
   
- 
-	return timeColor;
+  
+    
+  
+	return #ffffff;
 }
 
 int getEnemyIndexByRow(int row){				// Requirement #6
