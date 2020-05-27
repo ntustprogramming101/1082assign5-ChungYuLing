@@ -46,6 +46,8 @@ boolean demoMode = false;
 void setup() {
 	size(640, 480, P2D);
 	frameRate(60);
+  /*cabbageX!=clockX;
+  cabbageY!=clockY;*/
 	bg = loadImage("img/bg.jpg");
 	title = loadImage("img/title.jpg");
 	gameover = loadImage("img/gameover.jpg");
@@ -106,6 +108,7 @@ void initGame(){
 	initCabbages();
 
 	// Requirement #2: Initialize clocks and their position
+  initClocks();
 
 }
 
@@ -191,6 +194,20 @@ void initCabbages(){
 }
 
 void initClocks(){
+  clockX = new float[6];
+  clockY = new float[6];
+
+  for(int i = 0; i < cabbageX.length; i++){
+    clockX[i] = SOIL_SIZE * floor(random(SOIL_COL_COUNT));
+    clockY[i] = SOIL_SIZE * ( i * 4 + floor(random(4)));
+  }
+  
+  if(clockX==cabbageX&&clockY==cabbageY){
+    for(int i = 0; i < cabbageX.length; i++){
+    clockX[i] = SOIL_SIZE * floor(random(SOIL_COL_COUNT));
+    clockY[i] = SOIL_SIZE * ( i * 4 + floor(random(4)));
+  }
+  }
 	// Requirement #1: Complete this method based on initCabbages()
 	// - Remember to reroll if the randomized position has a cabbage on the same soil!
 }
@@ -300,6 +317,24 @@ void draw() {
 		}
 
 		// Requirement #1: Clocks
+
+    for(int k = 0; k < clockX.length; k++){
+
+      image(clock, clockX[k], clockY[k]);
+
+      // Requirement #3: Use boolean isHit(...) to detect collision
+      if(playerHealth < PLAYER_MAX_HEALTH
+      && clockX[k] + SOIL_SIZE > playerX    // r1 right edge past r2 left
+        && clockX[k] < playerX + SOIL_SIZE    // r1 left edge past r2 right
+        && clockY[k] + SOIL_SIZE > playerY    // r1 top edge past r2 bottom
+        && clockY[k] < playerY + SOIL_SIZE) { // r1 bottom edge past r2 top
+
+        playerHealth ++;
+        clockX[k] = clockY[k] = -1000;
+
+      }
+    }
+
 		// --- Requirement #3: Use boolean isHit(...) to detect clock <-> player collision
 
 		// Groundhog
@@ -541,6 +576,23 @@ void drawTimerUI(){
 }
 
 void addTime(float seconds){					// Requirement #2
+
+ for(int k = 0; k < clockX.length; k++){
+
+      image(clock, clockX[k], clockY[k]);
+
+      // Requirement #3: Use boolean isHit(...) to detect collision
+      if( clockX[k] + SOIL_SIZE > playerX    // r1 right edge past r2 left
+        && clockX[k] < playerX + SOIL_SIZE    // r1 left edge past r2 right
+        && clockY[k] + SOIL_SIZE > playerY    // r1 top edge past r2 bottom
+        && clockY[k] < playerY + SOIL_SIZE) { // r1 bottom edge past r2 top
+
+        gameTimer +=150;
+        clockX[k] = clockY[k] = -1000;
+
+      }
+    }
+
 }
 
 boolean isHit(float ax, float ay, float aw, float ah, float bx, float by, float bw, float bh){
