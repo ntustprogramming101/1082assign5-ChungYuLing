@@ -561,7 +561,7 @@ void drawDepthUI(){
 }
 
 void drawTimerUI(){
-	String timeString = str(gameTimer); // Requirement #4: Get the mm:ss string using String convertFramesToTimeString(int frames)
+	String timeString = convertFramesToTimeString(gameTimer); // Requirement #4: Get the mm:ss string using String convertFramesToTimeString(int frames)
 
 	textAlign(LEFT, BOTTOM);
 
@@ -577,7 +577,14 @@ void drawTimerUI(){
 
 void addTime(float seconds){					// Requirement #2
 
- for(int k = 0; k < clockX.length; k++){
+  
+  
+  
+  
+
+
+
+ /*for(int k = 0; k < clockX.length; k++){
 
       image(clock, clockX[k], clockY[k]);
 
@@ -587,23 +594,40 @@ void addTime(float seconds){					// Requirement #2
         && clockY[k] + SOIL_SIZE > playerY    // r1 top edge past r2 bottom
         && clockY[k] < playerY + SOIL_SIZE) { // r1 bottom edge past r2 top
 
-        gameTimer +=150;
+        sec +=150;
         clockX[k] = clockY[k] = -1000;
 
       }
-    }
+    }*/
 
 }
 
 boolean isHit(float ax, float ay, float aw, float ah, float bx, float by, float bw, float bh){
 	return false;								// Requirement #3
 }
+int min,sec;
+/*if (sec<=0){
+  min-1;
+}*/
 
 String convertFramesToTimeString(int frames){	// Requirement #4
-	return "";
+  int min=gameTimer/60/60;
+  int sec=gameTimer%60;
+  
+  String smin = nf (min,2);
+  String ssec = nf (sec,2);
+  //String finalTime=smin;
+  return smin+":"+ssec;
+	//return "finalTime";
 }
 
 color getTimeTextColor(int frames){				// Requirement #5
+  if (min>=2){
+    color timeTextColor=#00ffff;
+  }
+  
+    
+  
 	return #ffffff;
 }
 
