@@ -591,11 +591,11 @@ String convertFramesToTimeString(int frames){	// Requirement #4
   if (sec<=0){
   min-=1;
 }
-  int min=gameTimer/60/60;
-  int sec=(gameTimer/60)%60;
+  float min=floor(gameTimer/60/60);
+  float sec=floor((gameTimer/60)%60);
   
-  String smin = nf (min,2);
-  String ssec = nf (sec,2);
+  String smin = nf (int(min),2);
+  String ssec = nf (int(sec),2);
   //String finalTime=smin;
   return smin+":"+ssec;
 	//return "finalTime";
