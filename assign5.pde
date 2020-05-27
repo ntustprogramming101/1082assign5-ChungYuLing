@@ -580,7 +580,7 @@ boolean isHit(float ax, float ay, float aw, float ah, float bx, float by, float 
 	return false;								// Requirement #3
 }
 
-int min,sec ;
+//int min,sec ;
 
 
 String convertFramesToTimeString(int frames){	// Requirement #4
@@ -591,7 +591,7 @@ String convertFramesToTimeString(int frames){	// Requirement #4
   if (sec<=0){
   min-=1;
 }
-
+  
   String smin = nf (min,2);
   String ssec = nf (sec,2);
   //String finalTime=smin;
@@ -600,9 +600,9 @@ String convertFramesToTimeString(int frames){	// Requirement #4
 }
 
 color getTimeTextColor(int frames){				// Requirement #5
-  if (min>=2){
+  /*if (min>=2){
     color timeTextColor=#00ffff;    
-  }
+  }*/
   
   
     
