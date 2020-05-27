@@ -329,7 +329,7 @@ void draw() {
         && clockY[k] + SOIL_SIZE > playerY    // r1 top edge past r2 bottom
         && clockY[k] < playerY + SOIL_SIZE) { // r1 bottom edge past r2 top
 
-        playerHealth ++;
+        gameTimer +=900;
         clockX[k] = clockY[k] = -1000;
 
       }
@@ -577,42 +577,22 @@ void drawTimerUI(){
 
 void addTime(float seconds){					// Requirement #2
 
-  
-  
-  
-  
-
-
-
- /*for(int k = 0; k < clockX.length; k++){
-
-      image(clock, clockX[k], clockY[k]);
-
-      // Requirement #3: Use boolean isHit(...) to detect collision
-      if( clockX[k] + SOIL_SIZE > playerX    // r1 right edge past r2 left
-        && clockX[k] < playerX + SOIL_SIZE    // r1 left edge past r2 right
-        && clockY[k] + SOIL_SIZE > playerY    // r1 top edge past r2 bottom
-        && clockY[k] < playerY + SOIL_SIZE) { // r1 bottom edge past r2 top
-
-        sec +=150;
-        clockX[k] = clockY[k] = -1000;
-
-      }
-    }*/
 
 }
 
 boolean isHit(float ax, float ay, float aw, float ah, float bx, float by, float bw, float bh){
 	return false;								// Requirement #3
 }
-int min,sec;
-/*if (sec<=0){
-  min-1;
-}*/
+
+int min,sec ;
+
 
 String convertFramesToTimeString(int frames){	// Requirement #4
+  if (sec<=0){
+  min-=1;
+}
   int min=gameTimer/60/60;
-  int sec=gameTimer%60;
+  int sec=(gameTimer/60)%60;
   
   String smin = nf (min,2);
   String ssec = nf (sec,2);
@@ -623,8 +603,9 @@ String convertFramesToTimeString(int frames){	// Requirement #4
 
 color getTimeTextColor(int frames){				// Requirement #5
   if (min>=2){
-    color timeTextColor=#00ffff;
+    color timeTextColor=#00ffff;    
   }
+  
   
     
   
