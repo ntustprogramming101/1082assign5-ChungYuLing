@@ -46,6 +46,8 @@ boolean demoMode = false;
 void setup() {
 	size(640, 480, P2D);
 	frameRate(60);
+  /*cabbageX!=clockX;
+  cabbageY!=clockY;*/
 	bg = loadImage("img/bg.jpg");
 	title = loadImage("img/title.jpg");
 	gameover = loadImage("img/gameover.jpg");
@@ -574,6 +576,8 @@ void drawTimerUI(){
 }
 
 void addTime(float seconds){					// Requirement #2
+
+
 }
 
 boolean isHit(float ax, float ay, float aw, float ah, float bx, float by, float bw, float bh){
@@ -585,15 +589,15 @@ boolean isHit(float ax, float ay, float aw, float ah, float bx, float by, float 
 
 String convertFramesToTimeString(int frames){	// Requirement #4
   
-  int min=gameTimer/60/60;
-  int sec=(gameTimer/60)%60;
+  float min=floor(gameTimer/60/60);
+  float sec=floor((gameTimer/60)%60);
   
   if (sec<=0){
   min-=1;
 }
   
-  String smin = nf (min,2);
-  String ssec = nf (sec,2);
+  String smin = nf (int(min),2);
+  String ssec = nf (int(sec),2);
   //String finalTime=smin;
   return smin+":"+ssec;
 	//return "finalTime";
